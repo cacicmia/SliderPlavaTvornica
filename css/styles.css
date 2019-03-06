@@ -1,0 +1,58 @@
+/*Slider CSS */
+
+
+* {
+    margin-top: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: 'Trebuchet MS', 'sans-serif';
+    color: #555758;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+h1 {
+    color: #134880;
+    font-size: 30px;
+}
+/* layout ********/
+#hdr {
+    
+    max-height: 5em;
+    background-color: #DDD;
+    border-radius: 0 0 8px 8px;
+}
+#hdr h1{
+    padding: 0.5em;
+}
+
+
+#content {
+    background-color: yellow;
+    width: 300px;
+    height:200px;
+    display: inline-block;
+    width: 66%;
+
+}
+#sdbr h1{
+    font-size: 26px;
+}
+#sdbr{
+    display: inline-block;
+    width: 33%;
+    padding-left: 1em;
+}
+#ftr{
+    background-color: #DDD;
+    border-radius: 8px 8px 0 0; 
+    text-align: right;
+    position: absolute;
+    bottom:0;
+    width: 100%;
+    max-width: 1200px;
+
+}
