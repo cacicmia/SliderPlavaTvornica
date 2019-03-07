@@ -8,7 +8,7 @@ body{
     font-family: 'Trebuchet MS', 'sans-serif';
     color: #555758;
     width: 100%;
-    max-width: 1200px;
+    max-width: 940px;
     margin: 0 auto;
 }
 
@@ -33,7 +33,6 @@ h1 {
 }
 
 #content {
-    background-color: yellow;
     width: 66%;
   
 }
@@ -60,10 +59,14 @@ h1 {
 .div1,
 .div2 {
     display: flex;
-    flex-flow: reverse nowrap;
-    max-height: 800px;
+    flex-flow: row-reverse nowrap;
+    max-width: 100%;
+   
 }
-.sliderEl {
+.slideEl {
+    border-radius: 5%;
+}
+.flexEl {
     max-width: 100%;
     max-height: 200px;
     display:inline;
@@ -72,14 +75,14 @@ h1 {
 .arrowDiv {
     align-content: right;
     width: 200px;
-    margin-left: 3em;
+    margin-left: 5em;
    
 }
 
 .arrow{
     display: block;
     background-color: #FFFFFF;
-    padding: 1.5em 2em;
+    padding: 1.5em 1.8em;
     margin: 1em; 
     border-radius: 10%;
 }
