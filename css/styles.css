@@ -1,6 +1,4 @@
 /*Slider CSS */
-
-
 * {
     margin-top: 0;
     padding: 0;
@@ -28,21 +26,22 @@ h1 {
 #hdr h1{
     padding: 0.5em;
 }
+.wrapper {
+    display: flex;
+    margin: 3em 0;
 
+}
 
 #content {
     background-color: yellow;
-    width: 300px;
-    height:200px;
-    display: inline-block;
     width: 66%;
-
+  
 }
 #sdbr h1{
     font-size: 26px;
 }
 #sdbr{
-    display: inline-block;
+    
     width: 33%;
     padding-left: 1em;
 }
@@ -55,4 +54,40 @@ h1 {
     width: 100%;
     max-width: 1200px;
 
+}
+
+/*slider elements*/
+.div1,
+.div2 {
+    display: flex;
+    flex-flow: reverse nowrap;
+    max-height: 800px;
+}
+.sliderEl {
+    max-width: 100%;
+    max-height: 200px;
+    display:inline;
+    padding: 0.25em 0.25em;
+}
+.arrowDiv {
+    align-content: right;
+    width: 200px;
+    margin-left: 3em;
+   
+}
+
+.arrow{
+    display: block;
+    background-color: #FFFFFF;
+    padding: 1.5em 2em;
+    margin: 1em; 
+    border-radius: 10%;
+}
+.active{
+    border: 1px solid  #215388;
+    box-shadow: 0 2px 2px 0 #215388;
+}
+.inactive{
+    border: 1px solid  #DDDDDD;
+    box-shadow: 0 2px 2px 0 #aaa;
 }
