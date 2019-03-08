@@ -47,17 +47,18 @@ h1 {
 #ftr{
     background-color: #DDD;
     border-radius: 8px 8px 0 0; 
-    text-align: right;
     position: absolute;
     bottom:0;
     width: 100%;
-    max-width: 1200px;
+    max-width: 940px;
+    text-align: right;
 
 }
 
+
 /*slider elements*/
-.div1,
-.div2 {
+.slider1,
+.slider2 {
     display: flex;
     flex-flow: row-reverse nowrap;
     max-width: 100%;
