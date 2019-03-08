@@ -91,6 +91,12 @@ h1 {
     border: 1px solid  #215388;
     box-shadow: 0 2px 2px 0 #215388;
 }
+.active:hover {
+    background-color: #c1e6f07e;
+}
+.active:active {
+    background-color: #5c8a96;
+}
 .inactive{
     border: 1px solid  #DDDDDD;
     box-shadow: 0 2px 2px 0 #aaa;
