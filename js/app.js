@@ -32,7 +32,7 @@ var view = {
     this.rew = document.querySelector('.left');
         
     this.ff.addEventListener('click',this.moveBoth.bind(view, true));
-   // this.rew.addEventListener('click',this.moveBoth.bind(view, false)); 
+    
      
 
     },
@@ -54,8 +54,8 @@ var view = {
     moveBoth: function(n) {
         let inactive= $('.inactive');
         inactive.addClass('active');
-       
-        $('.inactive').removeClass('inactive');
+        inactive.removeClass('inactive');
+        this.rew.addEventListener('click',this.moveBoth.bind(view, false));
         
         $('.slideEl').remove();
         if (n) {
@@ -64,8 +64,7 @@ var view = {
 
            
         
-        } else if (!n) {
-            console.log('reached false');
+        } else {
             this.moveRew(this.slider1,this.slideEl1);
             this.moveRew(this.slider2,this.slideEl2);
         }
@@ -73,13 +72,14 @@ var view = {
         
     },
     moveFf: function(array, DOM){
-
+        console.log('move ff');
         let rotatedEl = array.shift();
         array.push(rotatedEl);
         this.renderSlider(array,DOM );
 
     },
     moveRew: function(array,DOM){
+        console.log('move rew');
         let rotatedEl =array.pop();
         array.unshift(rotatedEl);
         this.renderSlider(array,DOM); 
