@@ -82,21 +82,36 @@ h1 {
 
 .arrow{
     display: block;
-    background-color: #FFFFFF;
-    padding: 1.5em 1.8em;
+    padding: 2.5em;
     margin: 1em; 
     border-radius: 10%;
+    background-repeat: ;
+    background-position: ;
+}
+.inactive.left {
+    background: url(../img/arrow-gray-left.png) no-repeat center,
+    #fff no-repeat center;
+}
+.active.left {
+    background: url(../img/arrow-blue-left.png) no-repeat center,
+    #fff no-repeat center;
+}
+.active.left:hover {
+    background: url(../img/arrow-blue-left.png) no-repeat center,
+    #abe no-repeat center; 
+}
+.active.right {
+    background: url(../img/arrow-blue-right.png) no-repeat center,
+    #fff no-repeat center;
+}.active.right:hover {
+    background: url(../img/arrow-blue-right.png) no-repeat center,
+    #abe no-repeat center; 
 }
 .active{
     border: 1px solid  #215388;
     box-shadow: 0 2px 2px 0 #215388;
 }
-.active:hover {
-    background-color: #c1e6f07e;
-}
-.active:active {
-    background-color: #5c8a96;
-}
+
 .inactive{
     border: 1px solid  #DDDDDD;
     box-shadow: 0 2px 2px 0 #aaa;

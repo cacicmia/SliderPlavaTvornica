@@ -52,10 +52,13 @@ var view = {
 
     },
     moveBoth: function(n) {
+        let inactive= $('.inactive');
+        inactive.addClass('active');
+       
+        $('.inactive').removeClass('inactive');
         
         $('.slideEl').remove();
         if (n) {
-            console.log(this.slideEl1);
             this.moveFf(this.slider1,this.slideEl1);
             this.moveFf(this.slider2,this.slideEl2); 
 
