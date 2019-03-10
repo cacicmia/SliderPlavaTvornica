@@ -32,6 +32,7 @@ var view = {
     this.rew = document.querySelector('.left');
         
     this.ff.addEventListener('click',this.moveBoth.bind(view, true));
+    $(window).keyup(this.recogniseKey.bind(view));
     
      
 
@@ -82,6 +83,20 @@ var view = {
          let rotatedEl =array.pop();
         array.unshift(rotatedEl);
         this.renderSlider(array,DOM); 
+
+    },
+    recogniseKey: function(e) {
+        switch(e.which) {
+            case 39: {
+                this.moveBoth(true);
+                break;
+                }
+            case 37: { 
+                this.moveBoth( false);
+                break;
+                }
+            default: return;
+        }
 
     }
    
