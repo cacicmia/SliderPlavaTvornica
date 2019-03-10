@@ -53,10 +53,11 @@ var view = {
     },
     moveBoth: function(n) {
         let inactive= $('.inactive');
-        inactive.addClass('active');
-        inactive.removeClass('inactive');
-        this.rew.addEventListener('click',this.moveBoth.bind(view, false));
-        
+        if (inactive.length !== 0 ) {
+            inactive.addClass('active');
+            inactive.removeClass('inactive');
+            this.rew.addEventListener('click',this.moveBoth.bind(view, false));
+        }
         $('.slideEl').remove();
         if (n) {
             this.moveFf(this.slider1,this.slideEl1);
@@ -72,15 +73,13 @@ var view = {
         
     },
     moveFf: function(array, DOM){
-        console.log('move ff');
         let rotatedEl = array.shift();
         array.push(rotatedEl);
         this.renderSlider(array,DOM );
 
     },
     moveRew: function(array,DOM){
-        console.log('move rew');
-        let rotatedEl =array.pop();
+         let rotatedEl =array.pop();
         array.unshift(rotatedEl);
         this.renderSlider(array,DOM); 
 
