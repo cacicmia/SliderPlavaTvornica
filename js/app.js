@@ -46,9 +46,13 @@ var view = {
                
         array.forEach(function(elem){
             let imageDOM = `<img src="${elem}" alt="img" class="flexEl slideEl">`;
+            //jquery declaration $('<img>')
+           
+            
             DOM.style.right="0px";
             DOM.insertAdjacentHTML('beforeend',imageDOM);
             
+
         }); 
         
 
