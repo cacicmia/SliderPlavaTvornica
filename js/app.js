@@ -59,19 +59,44 @@ var view = {
             inactive.removeClass('inactive');
             this.rew.addEventListener('click',this.moveBoth.bind(view, false));
         }
-        $('.slideEl').remove();
+        let slider = $('.slideEl');
+        let sliderChildren1 = $('.slider1>.slideEl');
+        let sliderChildren2 =$('.slider2>.slideEl');;
         if (n) {
-            this.moveFf(this.slider1,this.slideEl1);
-            this.moveFf(this.slider2,this.slideEl2); 
+            this.animateFf(sliderChildren1,this.slider1,this.slideEl1);
+            this.animateFf(sliderChildren2,this.slider2,this.slideEl2);    
+            slider.remove()
+            //setTimeout(this.moveFf.bind(view,this.slider1,this.slideEl1),1000);
+            //setTimeout(this.moveFf.bind(view,this.slider2,this.slideEl2), 1000); 
 
            
         
         } else {
-            this.moveRew(this.slider1,this.slideEl1);
-            this.moveRew(this.slider2,this.slideEl2);
+           this.animateRew(sliderChildren1,this.slider1,this.slideEl1);
+           this.animateRew(sliderChildren2, this.slider2,this.slideEl2);
+            slider.remove()
+           // setTimeout(this.moveRew.bind(view, this.slider1,this.slideEl1),1000);
+            //setTimeout(this.moveRew.bind(view, this.slider2,this.slideEl2),1000);
         }
     
         
+    },
+    animateFf: function(slider,img, DOM){
+        let focused= slider[0];
+        let position = slider.offset();
+        let movement = position.left + focused.clientWidth;
+        movement = movement.toString();
+        console.log(focused);
+       
+        console.log();
+        slider.animate({left:movement},1000, this.moveFf(img,DOM));
+        
+    },
+    animateRew: function(slider, img, DOM) {
+        let focused= slider[0];
+        let position = slider.offset();
+        let movement = position.left -focused.clientWidth;
+        slider.animate({left:movement},1000, this.moveRew(img, DOM));
     },
     moveFf: function(array, DOM){
         let rotatedEl = array.shift();
