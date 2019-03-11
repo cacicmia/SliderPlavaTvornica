@@ -17,8 +17,8 @@ var controler = {
 var view = {
     init: function(){
         
-    this.slideEl1 = document.querySelector('.slider1');
-    this.slideEl2 = document.querySelector('.slider2');
+    this.slideEl1 = document.querySelector('.sl1');
+    this.slideEl2 = document.querySelector('.sl2');
     /* slider vars */
     this.slider1 = controler.getSlider('slider1');
     this.slider2 = controler.getSlider('slider2');
@@ -65,7 +65,7 @@ var view = {
         if (n) {
             this.animateFf(sliderChildren1,this.slider1,this.slideEl1);
             this.animateFf(sliderChildren2,this.slider2,this.slideEl2);    
-            slider.remove()
+            //slider.remove()
             //setTimeout(this.moveFf.bind(view,this.slider1,this.slideEl1),1000);
             //setTimeout(this.moveFf.bind(view,this.slider2,this.slideEl2), 1000); 
 
@@ -74,31 +74,33 @@ var view = {
         } else {
            this.animateRew(sliderChildren1,this.slider1,this.slideEl1);
            this.animateRew(sliderChildren2, this.slider2,this.slideEl2);
-            slider.remove()
+            //slider.remove()
            // setTimeout(this.moveRew.bind(view, this.slider1,this.slideEl1),1000);
             //setTimeout(this.moveRew.bind(view, this.slider2,this.slideEl2),1000);
         }
     
         
     },
-    animateFf: function(slider,img, DOM){
-        let focused= slider[0];
-        let position = slider.offset();
-        let movement = position.left + focused.clientWidth;
-        movement = movement.toString();
-        console.log(focused);
-       
-        console.log();
-        slider.animate({left:movement},1000, this.moveFf(img,DOM));
+    animateFf: function(slide,img, DOM){
+        let lastFocused= slide[0];
+        slide.push()
+        let nextFocused = slide[slide.length-1];
+        let position = slide.offset();
+        let movement = position.left - lastFocused.clientWidth;
+        movement+='px';
+        console.log(movement);
+        slide.animate({left:movement},1000);
         
     },
-    animateRew: function(slider, img, DOM) {
-        let focused= slider[0];
-        let position = slider.offset();
+    animateRew: function(slide, img, DOM) {
+        let focused= slide[0];
+        let position = slide.offset();
         let movement = position.left -focused.clientWidth;
-        slider.animate({left:movement},1000, this.moveRew(img, DOM));
+        movement+='px';
+        slide.animate({left:movement},1000);
     },
     moveFf: function(array, DOM){
+        console.log('im here');
         let rotatedEl = array.shift();
         array.push(rotatedEl);
         this.renderSlider(array,DOM );

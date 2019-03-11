@@ -62,11 +62,37 @@ h1 {
     display: flex;
     flex-flow: row-reverse nowrap;
     max-width: 100%;
+    position: relative;
+    overflow: visible;
+    min-height: 200px;
+    
    
+}
+.sl1,
+.sl2 {
+    display: flex;
+    flex-flow: row-reverse;
+    position: absolute;
+    justify-content: start;
+    
+    
+
+
+        
+        
+    
+}
+.sl1 {
+    right: 1em;
+}
+.sl2 {
+    right: 25%;
 }
 .slideEl {
     border-radius: 5%;
     position: relative;
+    
+   
 }
 .flexEl {
     max-width: 100%;
@@ -76,19 +102,20 @@ h1 {
   
 }
 .arrowDiv {
-    align-content: right;
-    width: 200px;
     margin-left: 5em;
+    position: relative;
+    right: 1em;
+    
    
 }
 
 .arrow{
+    align-content: flex-end;
     display: block;
     padding: 2.5em;
     margin: 1em; 
     border-radius: 10%;
-    background-repeat: ;
-    background-position: ;
+    
 }
 .inactive.left {
     background: url(../img/arrow-gray-left.png) no-repeat center,
