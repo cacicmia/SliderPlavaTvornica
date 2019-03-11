@@ -72,30 +72,27 @@ h1 {
 .sl2 {
     display: flex;
     flex-flow: row-reverse;
-    position: absolute;
+    position:relative;
     justify-content: start;
-    
-    
-
-
-        
-        
-    
+    overflow: visible;   
 }
-.sl1 {
-    right: 1em;
+
+.slider2 {
+    right: 15%;
 }
-.sl2 {
-    right: 25%;
+img {
+    
+    position:absolute;
+    right:1em;
 }
 .slideEl {
     border-radius: 5%;
-    position: relative;
+   
     
    
 }
 .flexEl {
-    max-width: 100%;
+   
     max-height: 200px;
     display:inline;
     padding: 0.25em 0.25em;

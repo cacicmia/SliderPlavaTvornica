@@ -46,8 +46,9 @@ var view = {
                
         array.forEach(function(elem){
             let imageDOM = `<img src="${elem}" alt="img" class="flexEl slideEl">`;
+            DOM.style.right="0px";
             DOM.insertAdjacentHTML('beforeend',imageDOM);
-        
+            
         }); 
         
 
@@ -60,8 +61,8 @@ var view = {
             this.rew.addEventListener('click',this.moveBoth.bind(view, false));
         }
         let slider = $('.slideEl');
-        let sliderChildren1 = $('.slider1>.slideEl');
-        let sliderChildren2 =$('.slider2>.slideEl');;
+        let sliderChildren1 = $('.sl1');
+        let sliderChildren2 =$('.sl2');;
         if (n) {
             this.animateFf(sliderChildren1,this.slider1,this.slideEl1);
             this.animateFf(sliderChildren2,this.slider2,this.slideEl2);    
