@@ -12,12 +12,13 @@ var controller = {
 };
 var view = {
 	init: function () {
-		/**@ get DOM elements */
+		/* get DOM elements */
 		this.slideEl1 = document.querySelector('.sl1');
 		this.slideEl2 = document.querySelector('.sl2');
 		this.ff = document.querySelector('.right');
 		this.rew = document.querySelector('.left');
 		this.inactive = $('.inactive');
+		this.activeAnimation = false;
 		/* get image urls from controller */
 		this.slider1 = controller.getSlider('slider1');
 		this.slider2 = controller.getSlider('slider2');
@@ -41,23 +42,27 @@ var view = {
 		});
 	},
 	moveBoth: function (n) {
-		/* activate left controls on screen */
-		if (this.inactive.hasClass('inactive')) {
-			this.inactive.addClass('active');
-			this.inactive.removeClass('inactive');
-			this.rew.addEventListener('click', this.moveBoth.bind(view, false));
-		}
-		/* get currently rendered elements */
-		this.slideContainer1 = $('.sl1');
-		this.slideContainer2 = $('.sl2');
-		this.slideCollection1 = this.slideContainer1.children();
-		this.slideCollection2 = this.slideContainer2.children();
-		if (n) {
-			this.animateFf(this.slideCollection1, this.slideContainer1);
-			this.animateFf(this.slideCollection2, this.slideContainer2);
+		if (this.activeAnimation) {
+			return;
 		} else {
-			this.animateRew(this.slideCollection1, $('.sl1'));
-			this.animateRew(this.slideCollection2, $('.sl2'));
+			/* activate left controls on screen */
+			if (this.inactive.hasClass('inactive')) {
+				this.inactive.addClass('active');
+				this.inactive.removeClass('inactive');
+				this.rew.addEventListener('click', this.moveBoth.bind(view, false));
+			}
+			/* get currently rendered elements */
+			this.slideContainer1 = $('.sl1');
+			this.slideContainer2 = $('.sl2');
+			this.slideCollection1 = this.slideContainer1.children();
+			this.slideCollection2 = this.slideContainer2.children();
+			if (n) {
+				this.animateFf(this.slideCollection1, this.slideContainer1);
+				this.animateFf(this.slideCollection2, this.slideContainer2);
+			} else {
+				this.animateRew(this.slideCollection1, $('.sl1'));
+				this.animateRew(this.slideCollection2, $('.sl2'));
+			}
 		}
 	},
 	/** 
@@ -68,23 +73,26 @@ var view = {
 	animateFf: function (slide, DOM) {
 		let first = slide.first();
 		let step = first.outerWidth();
+		this.activeAnimation = true;
 		first.animate({
 			opacity: '0'
 		}, {
-            duration:200,
 			queue: false,
 			complete: function () {
 				let store = $(this).detach()
 				store.animate({
 					'opacity': '1'
-				},200);
+				}, {
+					complete: function () {
+						view.activeAnimation = false;
+					}
+				});
 				store.appendTo(DOM);
 			}
 		});
 		slide.animate({
 			right: `-=${step}`
 		}, {
-            duration:200,
 			queue: false,
 			complete: function () {
 				$(this).css('right', `+=${step}`);
@@ -99,23 +107,26 @@ var view = {
 	animateRew: function (slide, DOM) {
 		let last = slide.last();
 		let step = last.outerWidth();
+		this.activeAnimation = true;
 		last.animate({
 			opacity: '0'
 		}, {
-            duration:200,
 			queue: false,
 			complete: function () {
 				let store = $(this).detach()
 				store.animate({
 					'opacity': '1'
-				},200);
+				}, {
+					complete: function () {
+						view.activeAnimation = false;
+					}
+				});
 				store.prependTo(DOM);
 			}
 		});
 		slide.animate({
 			right: `+=${step}`
 		}, {
-            duration:200,
 			queue: false,
 			complete: function () {
 				$(this).css('right', `-=${step}`);
