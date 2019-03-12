@@ -69,8 +69,8 @@ var view = {
         let sliderChildren1 = $('.sl1').children();
         let sliderChildren2 =$('.sl2').children();
         if (n) {
-            this.animateFf(sliderChildren1);
-            this.animateFf(sliderChildren2,this.slider2,this.slideEl2);    
+            this.animateFf(sliderChildren1,$('.sl1') );
+            this.animateFf(sliderChildren2,$('.sl2'));    
             //slider.remove()
             //setTimeout(this.moveFf.bind(view,this.slider1,this.slideEl1),1000);
             //setTimeout(this.moveFf.bind(view,this.slider2,this.slideEl2), 1000); 
@@ -87,54 +87,47 @@ var view = {
     
         
     },
-    animateFf: function(slide){
+    animateFf: function(slide,dom){
         let first= slide.first();
         let step= first.outerWidth()+20;
       
-        
-        slide.animate({right:`-=${step}`},{duration:600, queue: false, complete:function(){
-            console.log('animation complete');
+        let i=0;
+        first.animate({opacity:'0'},{
+            
+            queue: false,
+            complete: function(){
+                let store= $(this).detach()//css("display","none");
+                store.animate({'opacity':'1'});
+                store.appendTo(dom);
+            }
+        });
+        slide.animate({right:`-=${step}`},{ queue: false, complete:function(){
+            
+            $(this).css('right',`+=${step}`);
+           
           }} );
-       // first.toggle({opacity:'0'},{duration:600, queue: false});
-        
-     
-      //  moveImg.appendTo(slide);
-       // slide.animate({left:`+=${step}`, opacity:'1'},1000)
-        
-        
-      /*  let nextFocused = slide[slide.length-1];
-        let position = slide.offset();
-        let movement = position.left + lastFocused.clientWidth;
-        movement+='px';
-        console.log(movement);
-        slide.children().animate({left:movement},{
-            duration: 1000,
-            step: function(num){
-                    if (num>=820){
-                        num = 0}
-                    }
-                });*/
+    
         
     },
-    animateRew:  function(slide){
+    animateRew:  function(slide,){
         let first= slide.first();
-        let step= first.outerWidth()+20;
+        let step= first.outerWidth();
       
+        let i=0;
         
         slide.animate({right:`+=${step}`},{duration:600, queue: false, complete:function(){
-            console.log('animation complete');
-          }} ); /*function(slide, img, DOM) {
-        let focused= slide[0];
-        let position = slide.offset();
-        let movement = position.left -focused.clientWidth;
-        movement+='px';
-        slide.animate({left:movement},1000);*/
+            i++;
+            if (i>= slide.length) {
+                console.log('can do');
+            }
+           
+          }} );
     },
-    moveFf: function(array, DOM){
-        console.log('im here');
-        let rotatedEl = array.shift();
-        array.push(rotatedEl);
-        this.renderSlider(array,DOM );
+    moveFf: function(slideDOM,first){
+       // let store= first.detach()
+        //console.log(store);
+       // store.appendTo(slideDOM);
+        
 
     },
     moveRew: function(array,DOM){
