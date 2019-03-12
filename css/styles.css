@@ -10,7 +10,8 @@ body {
 	color: #555758;
 	width: 100%;
 	max-width: 940px;
-	margin: 0 auto;
+    margin: 0 auto;
+    
 }
 h1 {
 	color: #134880;
@@ -127,5 +128,8 @@ img {
 	#content {
 		width: 100%;
 		margin: 1em auto;
-	}
+    }
+    #ftr {
+        position: relative;
+    }
 }
