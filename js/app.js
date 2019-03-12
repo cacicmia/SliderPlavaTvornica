@@ -78,8 +78,8 @@ var view = {
            
         
         } else {
-           this.animateRew(sliderChildren1,this.slider1,this.slideEl1);
-           this.animateRew(sliderChildren2, this.slider2,this.slideEl2);
+           this.animateRew(sliderChildren1,$('.sl1'));
+           this.animateRew(sliderChildren2,$('.sl2'));
             //slider.remove()
            // setTimeout(this.moveRew.bind(view, this.slider1,this.slideEl1),1000);
             //setTimeout(this.moveRew.bind(view, this.slider2,this.slideEl2),1000);
@@ -90,13 +90,11 @@ var view = {
     animateFf: function(slide,dom){
         let first= slide.first();
         let step= first.outerWidth()+20;
-      
-        let i=0;
         first.animate({opacity:'0'},{
             
             queue: false,
             complete: function(){
-                let store= $(this).detach()//css("display","none");
+                let store= $(this).detach()
                 store.animate({'opacity':'1'});
                 store.appendTo(dom);
             }
@@ -109,17 +107,22 @@ var view = {
     
         
     },
-    animateRew:  function(slide,){
-        let first= slide.first();
-        let step= first.outerWidth();
-      
-        let i=0;
-        
-        slide.animate({right:`+=${step}`},{duration:600, queue: false, complete:function(){
-            i++;
-            if (i>= slide.length) {
-                console.log('can do');
+    animateRew:  function(slide,dom){
+        let last= slide.last();
+        let step= last.outerWidth()+20;
+    
+        last.animate({opacity:'0'},{
+            
+            queue: false,
+            complete: function(){
+                let store= $(this).detach()
+                store.animate({'opacity':'1'});
+                store.prependTo(dom);
             }
+        });
+        slide.animate({right:`+=${step}`},{ queue: false, complete:function(){
+            
+            $(this).css('right',`-=${step}`);
            
           }} );
     },
