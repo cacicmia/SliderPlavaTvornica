@@ -40,7 +40,9 @@ h1 {
     font-size: 26px;
 }
 #sdbr{
-    
+    z-index: 1;
+    background: #fff;
+    opacity: 1;
     width: 33%;
     padding-left: 1em;
 }
@@ -77,31 +79,30 @@ h1 {
     overflow: visible;   
 }
 
-.slider2 {
-    right: 15%;
-}
+
 img {
-    
-    position:absolute;
+    display:inline;
+    position:relative;
     right:1em;
 }
 .slideEl {
     border-radius: 5%;
-   
-    
-   
+      
 }
 .flexEl {
    
     max-height: 200px;
     display:inline;
-    padding: 0.25em 0.25em;
+    padding: 5px ;
   
 }
 .arrowDiv {
-    margin-left: 5em;
+    padding-left: 5em;
     position: relative;
-    right: 1em;
+    
+    z-index: 1;
+    background: #fff;
+    opacity: 1;
     
    
 }
