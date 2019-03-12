@@ -1,7 +1,6 @@
 var model = {
 	slider1: ["img/slider-image-1.jpg", "img/slider-image-2.jpg", "img/slider-image-3.jpg", "img/slider-image-4.jpg", "img/slider-image-5.jpg"],
-    slider2: ["img/slider-image-6.jpg", "img/slider-image-7.jpg", "img/slider-image-8.jpg", "img/slider-image-9.jpg"]
-   
+	slider2: ["img/slider-image-6.jpg", "img/slider-image-7.jpg", "img/slider-image-8.jpg", "img/slider-image-9.jpg"]
 };
 var controller = {
 	init: function () {
@@ -9,7 +8,7 @@ var controller = {
 	},
 	getSlider: function (sliderName) {
 		return model[sliderName];
-    }
+	}
 };
 var view = {
 	init: function () {
@@ -17,10 +16,8 @@ var view = {
 		this.slideEl1 = document.querySelector('.sl1');
 		this.slideEl2 = document.querySelector('.sl2');
 		this.ff = document.querySelector('.right');
-        this.rew = document.querySelector('.left');
-        this.inactive = $('.inactive');
-        
-        
+		this.rew = document.querySelector('.left');
+		this.inactive = $('.inactive');
 		/* get image urls from controller */
 		this.slider1 = controller.getSlider('slider1');
 		this.slider2 = controller.getSlider('slider2');
@@ -45,12 +42,11 @@ var view = {
 	},
 	moveBoth: function (n) {
 		/* activate left controls on screen */
-		
 		if (this.inactive.hasClass('inactive')) {
 			this.inactive.addClass('active');
 			this.inactive.removeClass('inactive');
 			this.rew.addEventListener('click', this.moveBoth.bind(view, false));
-		} 
+		}
 		/* get currently rendered elements */
 		this.slideContainer1 = $('.sl1');
 		this.slideContainer2 = $('.sl2');
@@ -70,24 +66,25 @@ var view = {
 	 * @param DOM jQuery element containing slide images
 	 */
 	animateFf: function (slide, DOM) {
-      
 		let first = slide.first();
 		let step = first.outerWidth();
 		first.animate({
 			opacity: '0'
 		}, {
+            duration:200,
 			queue: false,
 			complete: function () {
 				let store = $(this).detach()
 				store.animate({
 					'opacity': '1'
-				});
+				},200);
 				store.appendTo(DOM);
 			}
 		});
 		slide.animate({
 			right: `-=${step}`
 		}, {
+            duration:200,
 			queue: false,
 			complete: function () {
 				$(this).css('right', `+=${step}`);
@@ -105,18 +102,20 @@ var view = {
 		last.animate({
 			opacity: '0'
 		}, {
+            duration:200,
 			queue: false,
 			complete: function () {
 				let store = $(this).detach()
 				store.animate({
 					'opacity': '1'
-				});
+				},200);
 				store.prependTo(DOM);
 			}
 		});
 		slide.animate({
 			right: `+=${step}`
 		}, {
+            duration:200,
 			queue: false,
 			complete: function () {
 				$(this).css('right', `-=${step}`);
@@ -134,14 +133,13 @@ var view = {
 				break;
 			}
 		case 37:
-			{   
-                if (!this.inactive.hasClass('inactive')) {
-                    this.moveBoth(false);
-                    break;
-                } else {
-                    break;
-                }
-				
+			{
+				if (!this.inactive.hasClass('inactive')) {
+					this.moveBoth(false);
+					break;
+				} else {
+					break;
+				}
 			}
 		default:
 			return;
