@@ -1,14 +1,15 @@
 var model = {
 	slider1: ["img/slider-image-1.jpg", "img/slider-image-2.jpg", "img/slider-image-3.jpg", "img/slider-image-4.jpg", "img/slider-image-5.jpg"],
-	slider2: ["img/slider-image-6.jpg", "img/slider-image-7.jpg", "img/slider-image-8.jpg", "img/slider-image-9.jpg"],
+    slider2: ["img/slider-image-6.jpg", "img/slider-image-7.jpg", "img/slider-image-8.jpg", "img/slider-image-9.jpg"]
+   
 };
-var controler = {
+var controller = {
 	init: function () {
 		view.init();
 	},
 	getSlider: function (sliderName) {
 		return model[sliderName];
-	}
+    }
 };
 var view = {
 	init: function () {
@@ -16,10 +17,13 @@ var view = {
 		this.slideEl1 = document.querySelector('.sl1');
 		this.slideEl2 = document.querySelector('.sl2');
 		this.ff = document.querySelector('.right');
-		this.rew = document.querySelector('.left');
+        this.rew = document.querySelector('.left');
+        this.inactive = $('.inactive');
+        
+        
 		/* get image urls from controller */
-		this.slider1 = controler.getSlider('slider1');
-		this.slider2 = controler.getSlider('slider2');
+		this.slider1 = controller.getSlider('slider1');
+		this.slider2 = controller.getSlider('slider2');
 		/* render sliders on screen */
 		this.renderSlider(this.slider1, this.slideEl1);
 		this.renderSlider(this.slider2, this.slideEl2);
@@ -41,12 +45,12 @@ var view = {
 	},
 	moveBoth: function (n) {
 		/* activate left controls on screen */
-		let inactive = $('.inactive');
-		if (inactive.length !== 0) {
-			inactive.addClass('active');
-			inactive.removeClass('inactive');
+		
+		if (this.inactive.hasClass('inactive')) {
+			this.inactive.addClass('active');
+			this.inactive.removeClass('inactive');
 			this.rew.addEventListener('click', this.moveBoth.bind(view, false));
-		}
+		} 
 		/* get currently rendered elements */
 		this.slideContainer1 = $('.sl1');
 		this.slideContainer2 = $('.sl2');
@@ -66,6 +70,7 @@ var view = {
 	 * @param DOM jQuery element containing slide images
 	 */
 	animateFf: function (slide, DOM) {
+      
 		let first = slide.first();
 		let step = first.outerWidth();
 		first.animate({
@@ -129,13 +134,18 @@ var view = {
 				break;
 			}
 		case 37:
-			{
-				this.moveBoth(false);
-				break;
+			{   
+                if (!this.inactive.hasClass('inactive')) {
+                    this.moveBoth(false);
+                    break;
+                } else {
+                    break;
+                }
+				
 			}
 		default:
 			return;
 		}
 	}
 };
-$(document).ready(controler.init());
+$(document).ready(controller.init());
