@@ -1,5 +1,4 @@
-
-        var model = {
+ var model = {
     slider1: ["img/slider-image-1.jpg", "img/slider-image-2.jpg", "img/slider-image-3.jpg", "img/slider-image-4.jpg", "img/slider-image-5.jpg"],
     slider2: ["img/slider-image-6.jpg", "img/slider-image-7.jpg", "img/slider-image-8.jpg", "img/slider-image-9.jpg"], 
 };
@@ -11,7 +10,6 @@ var controler = {
     getSlider: function(sliderName){
         return model[sliderName];
     }
-
 };
  
 var view = {
@@ -27,15 +25,12 @@ var view = {
     this.renderSlider(this.slider1,this.slideEl1);
     this.renderSlider(this.slider2,this.slideEl2);    
     /* reach buttons from the DOM */
-   
     this.ff = document.querySelector('.right');
     this.rew = document.querySelector('.left');
         
     this.ff.addEventListener('click',this.moveBoth.bind(view, true));
     $(window).keyup(this.recogniseKey.bind(view));
     
-     
-
     },
     /**
      * @description render slider containing images held in array
@@ -46,16 +41,10 @@ var view = {
                
         array.forEach(function(elem){
             let imageDOM = `<img src="${elem}" alt="img" class="flexEl slideEl">`;
-            //jquery declaration $('<img>')
-           
-            
             DOM.style.right="0px";
             DOM.insertAdjacentHTML('beforeend',imageDOM);
             
-
         }); 
-       
-
     },
     moveBoth: function(n) {
         
@@ -65,33 +54,29 @@ var view = {
             inactive.removeClass('inactive');
             this.rew.addEventListener('click',this.moveBoth.bind(view, false));
         }
-       
-        let sliderChildren1 = $('.sl1').children();
-        let sliderChildren2 =$('.sl2').children();
+        this.slideContainer1 =$('.sl1');
+        this.slideContainer2 =$('.sl2');
+        this.slideCollection1 = this.slideContainer1.children();
+        this.slideCollection2 =this.slideContainer2.children();
         if (n) {
-            this.animateFf(sliderChildren1,$('.sl1') );
-            this.animateFf(sliderChildren2,$('.sl2'));    
-            //slider.remove()
-            //setTimeout(this.moveFf.bind(view,this.slider1,this.slideEl1),1000);
-            //setTimeout(this.moveFf.bind(view,this.slider2,this.slideEl2), 1000); 
+            this.animateFf(this.slideCollection1,this.slideContainer1);
+            this.animateFf(this.slideCollection2,this.slideContainer2);    
+           
 
            
         
         } else {
-           this.animateRew(sliderChildren1,$('.sl1'));
-           this.animateRew(sliderChildren2,$('.sl2'));
-            //slider.remove()
-           // setTimeout(this.moveRew.bind(view, this.slider1,this.slideEl1),1000);
-            //setTimeout(this.moveRew.bind(view, this.slider2,this.slideEl2),1000);
+           this.animateRew(this.slideCollection1,$('.sl1'));
+           this.animateRew(this.slideCollection2,$('.sl2'));
+          
         }
     
         
     },
     animateFf: function(slide,dom){
         let first= slide.first();
-        let step= first.outerWidth()+20;
+        let step= first.outerWidth();
         first.animate({opacity:'0'},{
-            
             queue: false,
             complete: function(){
                 let store= $(this).detach()
@@ -109,7 +94,7 @@ var view = {
     },
     animateRew:  function(slide,dom){
         let last= slide.last();
-        let step= last.outerWidth()+20;
+        let step= last.outerWidth();
     
         last.animate({opacity:'0'},{
             
@@ -125,19 +110,6 @@ var view = {
             $(this).css('right',`-=${step}`);
            
           }} );
-    },
-    moveFf: function(slideDOM,first){
-       // let store= first.detach()
-        //console.log(store);
-       // store.appendTo(slideDOM);
-        
-
-    },
-    moveRew: function(array,DOM){
-         let rotatedEl =array.pop();
-        array.unshift(rotatedEl);
-        this.renderSlider(array,DOM); 
-
     },
     recogniseKey: function(e) {
         switch(e.which) {
