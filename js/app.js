@@ -13,10 +13,10 @@ var controller = {
 var view = {
 	init: function () {
 		/* get DOM elements */
-		this.slideEl1 = document.querySelector('.sl1');
-		this.slideEl2 = document.querySelector('.sl2');
-		this.ff = document.querySelector('.right');
-		this.rew = document.querySelector('.left');
+		this.slideEl1 = $('.sl1');
+		this.slideEl2 = $('.sl2');
+		this.ff = $('.right');
+		this.rew = $('.left');
 		this.inactive = $('.inactive');
 		this.activeAnimation = false;
 		/* get image urls from controller */
@@ -26,7 +26,7 @@ var view = {
 		this.renderSlider(this.slider1, this.slideEl1);
 		this.renderSlider(this.slider2, this.slideEl2);
 		/* Add event and keybord listeners for right control */
-		this.ff.addEventListener('click', this.moveBoth.bind(view, true));
+		this.ff.click(this.moveBoth.bind(view, true));
 		$(window).keyup(this.recogniseKey.bind(view));
 	},
 	/**
@@ -36,11 +36,12 @@ var view = {
 	 *  */
 	renderSlider: function (array, DOM) {
 		array.forEach(function (elem) {
-			let imageDOM = `<img src="${elem}" alt="img" class="flexEl slideEl">`;
-			DOM.style.right = "0px";
-			DOM.insertAdjacentHTML('beforeend', imageDOM);
-		});
-	},
+			let image = `<img src="${elem}" alt="img" class="flexEl slideEl">`;
+			let imageDOM = $.parseHTML(image);
+			DOM.css('right','0px');
+			DOM.append(imageDOM)
+	});
+},
 	moveBoth: function (n) {
 		if (this.activeAnimation) {
 			return;
@@ -49,7 +50,7 @@ var view = {
 			if (this.inactive.hasClass('inactive')) {
 				this.inactive.addClass('active');
 				this.inactive.removeClass('inactive');
-				this.rew.addEventListener('click', this.moveBoth.bind(view, false));
+				this.rew.click(this.moveBoth.bind(view, false));
 			}
 			/* get currently rendered elements */
 			this.slideContainer1 = $('.sl1');

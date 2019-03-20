@@ -19,12 +19,12 @@ h1 {
 }
 /* layout ********/
 
-#hdr {
+#header {
 	max-height: 5em;
 	background-color: #DDD;
 	border-radius: 0 0 8px 8px;
 }
-#hdr h1 {
+#header h1 {
 	padding: 0.5em;
 }
 .wrapper {
@@ -34,17 +34,17 @@ h1 {
 #content {
 	width: 66%;
 }
-#sdbr h1 {
+#sidebar h1 {
 	font-size: 26px;
 }
-#sdbr {
+#sidebar {
 	z-index: 1;
 	background: #fff;
 	opacity: 1;
 	width: 33%;
 	padding-left: 1em;
 }
-#ftr {
+#footer {
 	background-color: #DDD;
 	border-radius: 8px 8px 0 0;
 	position: absolute;
@@ -124,12 +124,12 @@ img {
 	.wrapper {
 		flex-direction: column;
 	}
-	#sdbr,
+	#sidebar,
 	#content {
 		width: 100%;
 		margin: 1em auto;
     }
-    #ftr {
+    #footer {
         position: relative;
     }
 }
