@@ -1,16 +1,14 @@
-var model = {
+(function(){
+	let model = {
 	slider1: ["img/slider-image-1.jpg", "img/slider-image-2.jpg", "img/slider-image-3.jpg", "img/slider-image-4.jpg", "img/slider-image-5.jpg"],
 	slider2: ["img/slider-image-6.jpg", "img/slider-image-7.jpg", "img/slider-image-8.jpg", "img/slider-image-9.jpg"]
 };
-var controller = {
-	init: function () {
-		view.init();
-	},
-	getSlider: function (sliderName) {
-		return model[sliderName];
-	}
+let controller = {
+	init:()=> view.init(),
+	getSlider: sliderName => model[sliderName]
+	
 };
-var view = {
+let view = {
 	init: function () {
 		/* get DOM elements */
 		this.slideEl1 = $('.sl1');
@@ -34,14 +32,13 @@ var view = {
 	 * @param {array} array
 	 * @param {number} num number of the slider
 	 *  */
-	renderSlider: function (array, DOM) {
-		array.forEach(function (elem) {
+	renderSlider: (array, DOM) => 
+		array.forEach((elem) => {
 			let image = `<img src="${elem}" alt="img" class="flexEl slideEl">`;
 			let imageDOM = $.parseHTML(image);
 			DOM.css('right','0px');
-			DOM.append(imageDOM)
-	});
-},
+			DOM.append(imageDOM);
+	}),
 	moveBoth: function (n) {
 		if (this.activeAnimation) {
 			return;
@@ -61,8 +58,8 @@ var view = {
 				this.animateFf(this.slideCollection1, this.slideContainer1);
 				this.animateFf(this.slideCollection2, this.slideContainer2);
 			} else {
-				this.animateRew(this.slideCollection1, $('.sl1'));
-				this.animateRew(this.slideCollection2, $('.sl2'));
+				this.animateRew(this.slideCollection1,this.slideContainer1);
+				this.animateRew(this.slideCollection2,this.slideContainer2);
 			}
 		}
 	},
@@ -84,9 +81,7 @@ var view = {
 				store.animate({
 					'opacity': '1'
 				}, {
-					complete: function () {
-						view.activeAnimation = false;
-					}
+					complete: () => view.activeAnimation = false
 				});
 				store.appendTo(DOM);
 			}
@@ -118,9 +113,8 @@ var view = {
 				store.animate({
 					'opacity': '1'
 				}, {
-					complete: function () {
-						view.activeAnimation = false;
-					}
+					complete: () =>	view.activeAnimation = false
+					
 				});
 				store.prependTo(DOM);
 			}
@@ -154,8 +148,9 @@ var view = {
 				}
 			}
 		default:
-			return;
+		break;
 		}
 	}
 };
-$(document).ready(controller.init());
+controller.init();
+})();
