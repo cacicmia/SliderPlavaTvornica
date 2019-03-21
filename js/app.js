@@ -32,13 +32,16 @@ let view = {
 	 * @param {array} array
 	 * @param {number} num number of the slider
 	 *  */
-	renderSlider: (array, DOM) => 
+	renderSlider: (array, DOM) => {
+		let image="";
 		array.forEach((elem) => {
-			let image = `<img src="${elem}" alt="img" class="flexEl slideEl">`;
-			let imageDOM = $.parseHTML(image);
-			DOM.css('right','0px');
-			DOM.append(imageDOM);
-	}),
+			image += `<img src="${elem}" alt="img" class="flexEl slideEl">`;
+			
+		});
+		let imageDOM = $.parseHTML(image);
+		DOM.css('right','0px');
+		DOM.append(imageDOM);
+	},
 	moveBoth: function (n) {
 		if (this.activeAnimation) {
 			return;
