@@ -1,15 +1,8 @@
-(function(){
-	let model = {
+	var Slider = {
 	slider1: ["img/slider-image-1.jpg", "img/slider-image-2.jpg", "img/slider-image-3.jpg", "img/slider-image-4.jpg", "img/slider-image-5.jpg"],
-	slider2: ["img/slider-image-6.jpg", "img/slider-image-7.jpg", "img/slider-image-8.jpg", "img/slider-image-9.jpg"]
-};
-let controller = {
-	init:()=> view.init(),
-	getSlider: sliderName => model[sliderName]
+	slider2: ["img/slider-image-6.jpg", "img/slider-image-7.jpg", "img/slider-image-8.jpg", "img/slider-image-9.jpg"],
 	
-};
-let view = {
-	init: function () {
+	init () {
 		/* get DOM elements */
 		this.slideEl1 = $('.sl1');
 		this.slideEl2 = $('.sl2');
@@ -17,32 +10,28 @@ let view = {
 		this.rew = $('.left');
 		this.inactive = $('.inactive');
 		this.activeAnimation = false;
-		/* get image urls from controller */
-		this.slider1 = controller.getSlider('slider1');
-		this.slider2 = controller.getSlider('slider2');
 		/* render sliders on screen */
 		this.renderSlider(this.slider1, this.slideEl1);
 		this.renderSlider(this.slider2, this.slideEl2);
 		/* Add event and keybord listeners for right control */
-		this.ff.click(this.moveBoth.bind(view, true));
-		$(window).keyup(this.recogniseKey.bind(view));
+		this.ff.click(this.moveBoth.bind(Slider, true));
+		$(window).keyup(this.recogniseKey.bind(Slider));
 	},
 	/**
 	 * @description render slider containing images held in array
 	 * @param {array} array
 	 * @param {number} num number of the slider
 	 *  */
-	renderSlider: (array, DOM) => {
+	renderSlider (array, DOM) {
 		let image="";
 		array.forEach((elem) => {
 			image += `<img src="${elem}" alt="img" class="flexEl slideEl">`;
-			
-		});
+			});
 		let imageDOM = $.parseHTML(image);
 		DOM.css('right','0px');
 		DOM.append(imageDOM);
 	},
-	moveBoth: function (n) {
+	moveBoth (n) {
 		if (this.activeAnimation) {
 			return;
 		} else {
@@ -50,7 +39,7 @@ let view = {
 			if (this.inactive.hasClass('inactive')) {
 				this.inactive.addClass('active');
 				this.inactive.removeClass('inactive');
-				this.rew.click(this.moveBoth.bind(view, false));
+				this.rew.click(this.moveBoth.bind(Slider, false));
 			}
 			/* get currently rendered elements */
 			this.slideContainer1 = $('.sl1');
@@ -71,7 +60,7 @@ let view = {
 	 * @param slide jQuery collection of image elements
 	 * @param DOM jQuery element containing slide images
 	 */
-	animateFf: function (slide, DOM) {
+	animateFf (slide, DOM) {
 		let first = slide.first();
 		let step = first.outerWidth();
 		this.activeAnimation = true;
@@ -84,7 +73,7 @@ let view = {
 				store.animate({
 					'opacity': '1'
 				}, {
-					complete: () => view.activeAnimation = false
+					complete: () => Slider.activeAnimation = false
 				});
 				store.appendTo(DOM);
 			}
@@ -103,7 +92,7 @@ let view = {
 	 * @param slide jQuery collection of image elements
 	 * @param DOM jQuery element containing slide images
 	 */
-	animateRew: function (slide, DOM) {
+	animateRew (slide, DOM) {
 		let last = slide.last();
 		let step = last.outerWidth();
 		this.activeAnimation = true;
@@ -116,7 +105,7 @@ let view = {
 				store.animate({
 					'opacity': '1'
 				}, {
-					complete: () =>	view.activeAnimation = false
+					complete: () =>	Slider.activeAnimation = false
 					
 				});
 				store.prependTo(DOM);
@@ -155,5 +144,4 @@ let view = {
 		}
 	}
 };
-controller.init();
-})();
+$.ready(Slider.init());
