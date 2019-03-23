@@ -1,21 +1,24 @@
-	var Slider = {
+	var slider = {
 	slider1: ["img/slider-image-1.jpg", "img/slider-image-2.jpg", "img/slider-image-3.jpg", "img/slider-image-4.jpg", "img/slider-image-5.jpg"],
 	slider2: ["img/slider-image-6.jpg", "img/slider-image-7.jpg", "img/slider-image-8.jpg", "img/slider-image-9.jpg"],
 	
 	init () {
-		/* get DOM elements */
+		this.reachDOM();
+		/* render sliders on screen */
+		this.renderSlider(this.slider1, this.slideEl1);
+		this.renderSlider(this.slider2, this.slideEl2);
+		/* Add event and keybord listeners for right control */
+		this.ff.click(this.moveBoth.bind(this, true));
+		$(window).keyup(this.recogniseKey.bind(this));
+	},
+	reachDOM () {
+		/* get DOM elements */	
 		this.slideEl1 = $('.sl1');
 		this.slideEl2 = $('.sl2');
 		this.ff = $('.right');
 		this.rew = $('.left');
 		this.inactive = $('.inactive');
 		this.activeAnimation = false;
-		/* render sliders on screen */
-		this.renderSlider(this.slider1, this.slideEl1);
-		this.renderSlider(this.slider2, this.slideEl2);
-		/* Add event and keybord listeners for right control */
-		this.ff.click(this.moveBoth.bind(Slider, true));
-		$(window).keyup(this.recogniseKey.bind(Slider));
 	},
 	/**
 	 * @description render slider containing images held in array
@@ -39,87 +42,52 @@
 			if (this.inactive.hasClass('inactive')) {
 				this.inactive.addClass('active');
 				this.inactive.removeClass('inactive');
-				this.rew.click(this.moveBoth.bind(Slider, false));
+				this.rew.click(this.moveBoth.bind(this, false));
 			}
-			/* get currently rendered elements */
-			this.slideContainer1 = $('.sl1');
-			this.slideContainer2 = $('.sl2');
-			this.slideCollection1 = this.slideContainer1.children();
-			this.slideCollection2 = this.slideContainer2.children();
-			if (n) {
-				this.animateFf(this.slideCollection1, this.slideContainer1);
-				this.animateFf(this.slideCollection2, this.slideContainer2);
-			} else {
-				this.animateRew(this.slideCollection1,this.slideContainer1);
-				this.animateRew(this.slideCollection2,this.slideContainer2);
-			}
+			/* animate both sliders */
+				this.animate( this.slideEl1, n);
+				this.animate( this.slideEl2, n);
+		
 		}
 	},
 	/** 
-	 * @description animate right
-	 * @param slide jQuery collection of image elements
+	 * @description animate slide 
 	 * @param DOM jQuery element containing slide images
+	 * @param n move direction 
 	 */
-	animateFf (slide, DOM) {
-		let first = slide.first();
-		let step = first.outerWidth();
+	animate (DOM, n) {
+		let slide = DOM.children();
+		let movingImg, step, moveDirection,moveBack, action;
+		 n ? (movingImg = slide.first(), step = movingImg.outerWidth(), moveDirection= `-=${step}`, moveBack = `+=${step}`, action = 'appendTo' ) :
+			(movingImg= slide.last(), step = movingImg.outerWidth(), moveDirection =`+=${step}`, moveBack = `-=${step}`,
+			action = 'prependTo');		 
+		
 		this.activeAnimation = true;
-		first.animate({
+		movingImg.animate({
 			opacity: '0'
 		}, {
 			queue: false,
 			complete: function () {
 				let store = $(this).detach()
 				store.animate({
-					'opacity': '1'
+					opacity: '1'
 				}, {
-					complete: () => Slider.activeAnimation = false
+					complete: () => slider.activeAnimation = false
 				});
-				store.appendTo(DOM);
+				store[`${action}`](DOM);
+				
 			}
 		});
 		slide.animate({
-			right: `-=${step}`
+			right: moveDirection
 		}, {
 			queue: false,
 			complete: function () {
-				$(this).css('right', `+=${step}`);
+				$(this).css('right', moveBack);
 			}
 		});
 	},
-	/** 
-	 * @description animate left
-	 * @param slide jQuery collection of image elements
-	 * @param DOM jQuery element containing slide images
-	 */
-	animateRew (slide, DOM) {
-		let last = slide.last();
-		let step = last.outerWidth();
-		this.activeAnimation = true;
-		last.animate({
-			opacity: '0'
-		}, {
-			queue: false,
-			complete: function () {
-				let store = $(this).detach()
-				store.animate({
-					'opacity': '1'
-				}, {
-					complete: () =>	Slider.activeAnimation = false
-					
-				});
-				store.prependTo(DOM);
-			}
-		});
-		slide.animate({
-			right: `+=${step}`
-		}, {
-			queue: false,
-			complete: function () {
-				$(this).css('right', `-=${step}`);
-			}
-		});
-	},
+
 	/**  
 	 * @description recognise keyboard input
 	 */
@@ -144,4 +112,4 @@
 		}
 	}
 };
-$.ready(Slider.init());
+$.ready(slider.init());
