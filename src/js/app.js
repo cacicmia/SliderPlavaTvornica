@@ -8,7 +8,7 @@ import img6 from '../img/slider-image-6.jpg';
 import img7 from '../img/slider-image-7.jpg';
 import img8 from '../img/slider-image-8.jpg';
 import img9 from '../img/slider-image-9.jpg';
-	var slider = {
+	let slider = {
 	slider1: [img1, img2, img3, img4, img5],
 	slider2: [img6, img7, img8, img9],
 	
