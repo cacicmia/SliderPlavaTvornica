@@ -1,6 +1,16 @@
+import '../css/styles.scss';
+import img1 from '../img/slider-image-1.jpg';
+import img2 from '../img/slider-image-2.jpg';
+import img3 from '../img/slider-image-3.jpg';
+import img4 from '../img/slider-image-4.jpg';
+import img5 from '../img/slider-image-5.jpg';
+import img6 from '../img/slider-image-6.jpg';
+import img7 from '../img/slider-image-7.jpg';
+import img8 from '../img/slider-image-8.jpg';
+import img9 from '../img/slider-image-9.jpg';
 	var slider = {
-	slider1: ["img/slider-image-1.jpg", "img/slider-image-2.jpg", "img/slider-image-3.jpg", "img/slider-image-4.jpg", "img/slider-image-5.jpg"],
-	slider2: ["img/slider-image-6.jpg", "img/slider-image-7.jpg", "img/slider-image-8.jpg", "img/slider-image-9.jpg"],
+	slider1: [img1, img2, img3, img4, img5],
+	slider2: [img6, img7, img8, img9],
 	
 	init () {
 		this.reachDOM();

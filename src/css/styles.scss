@@ -7,7 +7,7 @@ $color:(
     'arrow':#215388
 );
 @function color($c){
-    @return map-get($colors, $c);
+    @return map-get($color, $c);
 }
 * {
 	margin-top: 0;
