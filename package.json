@@ -1,0 +1,27 @@
+{
+  "name": "plava-tvornica",
+  "version": "1.0.0",
+  "description": "Slider moves images left or right.\r Images move through animation in steps of last focused image - the most right image in both rows.",
+  "main": "index.js",
+  "dependencies": {
+    "img": "^3.0.3"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.3",
+    "sass": "^1.17.3"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cacicmia/SliderPlavaTvornica.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cacicmia/SliderPlavaTvornica/issues"
+  },
+  "homepage": "https://github.com/cacicmia/SliderPlavaTvornica#readme"
+}
