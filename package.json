@@ -11,7 +11,8 @@
     "sass": "^1.17.3"
   },
   "scripts": {
-    "dev": "parcel src/index.html"
+    "dev": "parcel index.html",
+    "start": "parcel build index.html"
   },
   "repository": {
     "type": "git",

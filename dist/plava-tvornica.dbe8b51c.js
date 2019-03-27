@@ -1,0 +1,24 @@
+parcelRequire=function(e,r,t,n){var i,o="function"==typeof parcelRequire&&parcelRequire,u="function"==typeof require&&require;function f(t,n){if(!r[t]){if(!e[t]){var i="function"==typeof parcelRequire&&parcelRequire;if(!n&&i)return i(t,!0);if(o)return o(t,!0);if(u&&"string"==typeof t)return u(t);var c=new Error("Cannot find module '"+t+"'");throw c.code="MODULE_NOT_FOUND",c}p.resolve=function(r){return e[t][1][r]||r},p.cache={};var l=r[t]=new f.Module(t);e[t][0].call(l.exports,p,l,l.exports,this)}return r[t].exports;function p(e){return f(p.resolve(e))}}f.isParcelRequire=!0,f.Module=function(e){this.id=e,this.bundle=f,this.exports={}},f.modules=e,f.cache=r,f.parent=o,f.register=function(r,t){e[r]=[function(e,r){r.exports=t},{}]};for(var c=0;c<t.length;c++)try{f(t[c])}catch(e){i||(i=e)}if(t.length){var l=f(t[t.length-1]);"object"==typeof exports&&"undefined"!=typeof module?module.exports=l:"function"==typeof define&&define.amd?define(function(){return l}):n&&(this[n]=l)}if(parcelRequire=f,i)throw i;return f}({"A9wb":[function(require,module,exports) {
+
+},{"./..\\img\\arrow-gray-left.png":[["arrow-gray-left.4f2d57e5.png","oT9D"],"oT9D"],"./..\\img\\arrow-blue-left.png":[["arrow-blue-left.0fd3c650.png","NgvX"],"NgvX"],"./..\\img\\arrow-blue-right.png":[["arrow-blue-right.1a100067.png","ST+/"],"ST+/"]}],"PDgZ":[function(require,module,exports) {
+module.exports="/slider-image-1.040ac5c3.jpg";
+},{}],"gW1h":[function(require,module,exports) {
+module.exports="/slider-image-2.fe66ea9f.jpg";
+},{}],"N+cY":[function(require,module,exports) {
+module.exports="/slider-image-3.63a43cbc.jpg";
+},{}],"ToDV":[function(require,module,exports) {
+module.exports="/slider-image-4.ced11316.jpg";
+},{}],"65xk":[function(require,module,exports) {
+module.exports="/slider-image-5.ebf15f22.jpg";
+},{}],"FIOn":[function(require,module,exports) {
+module.exports="/slider-image-6.0b1eeb15.jpg";
+},{}],"Wh/M":[function(require,module,exports) {
+module.exports="/slider-image-7.fa96993c.jpg";
+},{}],"tkEN":[function(require,module,exports) {
+module.exports="/slider-image-8.955c3641.jpg";
+},{}],"hcjn":[function(require,module,exports) {
+module.exports="/slider-image-9.22a2eb7d.jpg";
+},{}],"Focm":[function(require,module,exports) {
+"use strict";require("./css/styles.scss");var i=h(require("./img/slider-image-1.jpg")),e=h(require("./img/slider-image-2.jpg")),t=h(require("./img/slider-image-3.jpg")),s=h(require("./img/slider-image-4.jpg")),a=h(require("./img/slider-image-5.jpg")),r=h(require("./img/slider-image-6.jpg")),n=h(require("./img/slider-image-7.jpg")),c=h(require("./img/slider-image-8.jpg")),l=h(require("./img/slider-image-9.jpg"));function h(i){return i&&i.__esModule?i:{default:i}}var d={slider1:[i.default,e.default,t.default,s.default,a.default],slider2:[r.default,n.default,c.default,l.default],init:function(){this.reachDOM(),this.renderSlider(this.slider1,this.slideEl1),this.renderSlider(this.slider2,this.slideEl2),this.ff.click(this.moveBoth.bind(this,!0)),$(window).keyup(this.recogniseKey.bind(this))},reachDOM:function(){this.slideEl1=$(".sl1"),this.slideEl2=$(".sl2"),this.ff=$(".right"),this.rew=$(".left"),this.inactive=$(".inactive"),this.activeAnimation=!1},renderSlider:function(i,e){var t="";i.forEach(function(i){t+='<img src="'.concat(i,'" alt="img" class="flexEl slideEl">')});var s=$.parseHTML(t);e.css("right","0px"),e.append(s)},moveBoth:function(i){this.activeAnimation||(this.inactive.hasClass("inactive")&&(this.inactive.addClass("active"),this.inactive.removeClass("inactive"),this.rew.click(this.moveBoth.bind(this,!1))),this.animate(this.slideEl1,i),this.animate(this.slideEl2,i))},animate:function(i,e){var t,s,a,r,n,c=i.children();e?(s=(t=c.first()).outerWidth(),a="-=".concat(s),r="+=".concat(s),n="appendTo"):(s=(t=c.last()).outerWidth(),a="+=".concat(s),r="-=".concat(s),n="prependTo"),this.activeAnimation=!0,t.animate({opacity:"0"},{queue:!1,complete:function(){var e=$(this).detach();e.animate({opacity:"1"},{complete:function(){return d.activeAnimation=!1}}),e["".concat(n)](i)}}),c.animate({right:a},{queue:!1,complete:function(){$(this).css("right",r)}})},recogniseKey:function(i){switch(i.which){case 39:this.moveBoth(!0);break;case 37:if(this.inactive.hasClass("inactive"))break;this.moveBoth(!1)}}};$.ready(d.init());
+},{"./css/styles.scss":"A9wb","./img/slider-image-1.jpg":"PDgZ","./img/slider-image-2.jpg":"gW1h","./img/slider-image-3.jpg":"N+cY","./img/slider-image-4.jpg":"ToDV","./img/slider-image-5.jpg":"65xk","./img/slider-image-6.jpg":"FIOn","./img/slider-image-7.jpg":"Wh/M","./img/slider-image-8.jpg":"tkEN","./img/slider-image-9.jpg":"hcjn"}]},{},["Focm"], null)
+//# sourceMappingURL=/plava-tvornica.dbe8b51c.js.map

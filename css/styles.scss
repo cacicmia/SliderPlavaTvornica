@@ -1,0 +1,145 @@
+$color:(
+    'marginals': #DDD,
+    'heading': #134880,
+    'background': #fff,
+    'inactive': #abe,
+    'arrow':#215388
+);
+@function color($c){
+    @return map-get($color, $c);
+}
+* {
+	margin-top: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+body {
+	font-family: 'Trebuchet MS', 'sans-serif';
+	color: #555758;
+	width: 100%;
+	max-width: 940px;
+    margin: 0 auto;
+    #header {
+        max-height: 5em;
+        background-color: color(marginals);
+        border-radius: 0 0 8px 8px;
+    }
+    #header h1 {
+        padding: 0.5em;
+    }
+    h1 {
+        color: color(heading);
+        font-size: 30px;
+
+    }
+}
+
+/* layout ********/
+
+
+.wrapper {
+	display: flex;
+	margin: 3em 0;
+}
+#content {
+	width: 66%;
+}
+#sidebar h1 {
+	font-size: 26px;
+}
+#sidebar {
+	z-index: 1;
+	background-color: color(background);
+	opacity: 1;
+	width: 33%;
+	padding-left: 1em;
+}
+#footer {
+	background-color: color(marginals);
+	border-radius: 8px 8px 0 0;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	max-width: 940px;
+	text-align: right;
+}
+/*slider elements*/
+
+.slider1,
+.slider2 {
+	display: flex;
+	flex-flow: row-reverse nowrap;
+	max-width: 100%;
+	position: relative;
+	overflow: visible;
+	min-height: 200px;
+}
+.sl1,
+.sl2 {
+	display: flex;
+	flex-flow: row-reverse;
+	position: relative;
+	justify-content: start;
+	overflow: visible;
+}
+img {
+	position: relative;
+}
+.slideEl {
+	border-radius: 5%;
+}
+.flexEl {
+	max-height: 200px;
+	display: inline;
+	padding: 5px;
+}
+.arrowDiv {
+	padding-left: 5em;
+	position: relative;
+	z-index: 1;
+    background-color: color(background);
+	opacity: 1;
+}
+.arrow {
+	align-content: flex-end;
+	display: block;
+	padding: 2.5em;
+	margin: 1em;
+	border-radius: 10%;
+}
+.inactive.left {
+	background: url(../img/arrow-gray-left.png) no-repeat center, color(background) no-repeat center;
+}
+.active.left {
+	background: url(../img/arrow-blue-left.png) no-repeat center, color(background) no-repeat center;
+}
+.active.left:hover {
+	background: url(../img/arrow-blue-left.png) no-repeat center, color(inactive) no-repeat center;
+}
+.active.right {
+	background: url(../img/arrow-blue-right.png) no-repeat center, color(background) no-repeat center;
+}
+.active.right:hover {
+	background: url(../img/arrow-blue-right.png) no-repeat center, color(inactive) no-repeat center;
+}
+.active {
+	border: 1px solid color(arrow);
+	box-shadow: 0 2px 2px 0 color(arrow);
+}
+.inactive {
+	border: 1px solid color(marginals);
+	box-shadow: 0 2px 2px 0 #aaa;
+}
+@media screen and (max-width: 600px) {
+	.wrapper {
+		flex-direction: column;
+	}
+	#sidebar,
+	#content {
+		width: 100%;
+		margin: 1em auto;
+    }
+    #footer {
+        position: relative;
+    }
+}
